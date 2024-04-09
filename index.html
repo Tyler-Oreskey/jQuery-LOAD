@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Single Product Page</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
     <div class="product-container">
@@ -44,15 +44,15 @@
                     stylish with the Stanley Adventure Quencher 30 oz Travel Tumbler.
                 </p>
             </div>
-            <label for="color-selector">Select Color:</label>
-            <select id="color-selector">
-                <option value="neon-green">Neon Green</option>
-                <option value="neon-orange">Neon Orange</option>
-                <option value="fuchsia">Fuchsia</option>
-                <option value="azure">Azure</option>
-                <option value="ash">Ash</option>
-                <option value="frost">Frost</option>
-            </select>
+            <!-- <label for="color-selector">Select Color:</label> -->
+            <div class="color-selector">
+                <div class="color-option neon-green" data-color="neon-green"></div>
+                <div class="color-option neon-orange" data-color="neon-orange"></div>
+                <div class="color-option fuchsia" data-color="fuchsia"></div>
+                <div class="color-option azure" data-color="azure"></div>
+                <div class="color-option ash" data-color="ash"></div>
+                <div class="color-option frost" data-color="frost"></div>
+            </div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

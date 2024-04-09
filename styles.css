@@ -1,0 +1,19 @@
+.color-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .color-option {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .neon-green { background-color: #FF5733; }
+  .neon-orange { background-color: #FF5733; }
+  .fuchsia { background-color: fuchsia; }
+  .azure { background-color: azure; }
+  .ash { background-color: #FF5733; }
+  .frost { background-color: #D1E7E9; }
