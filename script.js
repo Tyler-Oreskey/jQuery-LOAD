@@ -5,7 +5,7 @@ $(document).ready(function() {
     $('#product-image').attr('alt', 'Stanley Ash 30 oz Tumbler');
 
     let currentColor = "ash";
-    const selectColorParagraphText = document.querySelector('p');
+    const selectColorParagraphText = document.getElementById('color-selector-header');
     const strong = selectColorParagraphText.querySelector('strong');
     
     // Handle color selection hover event
