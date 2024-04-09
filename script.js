@@ -1,12 +1,29 @@
 $(document).ready(function() {
     // load default description and image
-    $('#product-description p strong').load('./descriptions/ash.html');
+    $('#product-description').load('./descriptions/ash.html');
     $('#product-image').attr('src', './images/ash.jpg');
     $('#product-image').attr('alt', 'Stanley Ash 30 oz Tumbler');
+
     let currentColor = "ash";
+    const selectColorParagraphText = document.querySelector('p');
+    const strong = selectColorParagraphText.querySelector('strong');
+    
+    // Handle color selection hover event
+    $('.color-option div').hover(function() {
+        let hoveredColor = $(this).data('color');
+        let descriptionFile = './descriptions/' + hoveredColor + '.html';
+
+        $.get(descriptionFile, function(data) {
+            const description = $(data)[0];
+            strong.innerHTML = description.querySelector('strong').innerHTML;
+        });
+
+    }, function() {
+        strong.innerHTML = "";
+    })
 
     // Handle color change event
-    $('.color-option').click(function() {
+    $('.color-option div').click(function() {
         let selectedColor = $(this).data('color');
 
         if (selectedColor === currentColor) {
@@ -19,11 +36,8 @@ $(document).ready(function() {
         let imageFile = './images/' + selectedColor + '.jpg'
         let descriptionFile = './descriptions/' + selectedColor + '.html';
 
-        // Change image source and alt text
         $('#product-image').attr('src', imageFile);
         $('#product-image').attr('alt', `Stanley ${selectedColor} 30 oz Tumbler`);
-
-        // Load description for the selected color
-        $('#product-description p strong').load(descriptionFile);
+        $('#product-description').load(descriptionFile);
     });
 })
