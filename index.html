@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single Product Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="product-container">
+        <!-- image loaded dynamically here -->
+        <img alt="Stanley Green 30 oz Tumbler" id="product-image">
+        <div class="product-info">
+            <h1>Stanley 30 oz Quencher H2.0 FlowState Tumbler</h1>
+            <h2>$35.00</h2>
+            <p>Features</p>
+            <ul>
+                <li>Narrow base that fits most cup holders</li>
+                <li>Made with 90% recycled, BPA-free, 18/8 stainless steel</li>
+                <li>Double-wall vacuum insulation keeps beverages cold 9 hours and iced for up to 40 hours</li>
+                <li>FlowState lid with three positions for versatile sipping</li>
+                <li>Reuseable straw</li>
+                <li>Dishwasher safe</li>
+                <li>Easy-carry, comfort-grip handle</li>
+            </ul>
+            <p>Specs</p>
+            <ul>
+                <li>Material: 18/8 Stainless Steel</li>
+                <li>BPA Free: Yes</li>
+                <li>Keeps Drinks: Hot up to 5 Hours, Cold up to 9 Hours, Iced up to 40 Hours</li>
+                <li>Weight: 1.1 lbs.</li>
+                <li>Dimensions: 3.46"L x 5.4"W x 10.8"H</li>
+                <li>Base Diameter: 3.15"</li>
+            </ul>
+            <div id="product-description">
+                <!-- Color type loaded dynamically in strong tag -->
+                <p>The <strong></strong> Stanley Adventure Quencher 30 oz Travel Tumbler H2.0 is the perfect
+                    companion for your active lifestyle. With its durable construction and
+                    double-wall vacuum insulation, it keeps your beverages cold for up to
+                    9 hours and iced for an impressive 40 hours. The advanced FlowState lid
+                    offers three convenient positions for easy sipping and spill-proof protection.
+                    Whether you're heading to a long day of meetings, a workout class, or a trip
+                    out of town, this tumbler is designed to fit your needs. Stay hydrated and
+                    stylish with the Stanley Adventure Quencher 30 oz Travel Tumbler.
+                </p>
+            </div>
+            <label for="color-selector">Select Color:</label>
+            <select id="color-selector">
+                <option value="neon-green">Neon Green</option>
+                <option value="neon-orange">Neon Orange</option>
+                <option value="fuchsia">Fuchsia</option>
+                <option value="azure">Azure</option>
+                <option value="ash">Ash</option>
+                <option value="frost">Frost</option>
+            </select>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
