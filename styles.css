@@ -52,3 +52,19 @@ h1 {
 .azure { background-color: #018ec5; }
 .ash { background-color: #92908c; }
 .frost { background-color: #eaeceb; }
+
+.product-image {
+  position: relative;
+}
+
+.product-image a {
+  text-decoration: none;
+  position: absolute;
+  bottom: 0;
+  left: 34%;
+  color: black;
+}
+
+.product-image a:hover {
+  color: #018ec5;
+}
