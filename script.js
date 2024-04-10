@@ -1,43 +1,38 @@
 $(document).ready(function() {
+    let currentColorName = "Ash";
+
     // load default description and image
     $('#product-description').load('./descriptions/ash.html');
-    $('#product-image').attr('src', './images/ash.jpg');
-    $('#product-image').attr('alt', 'Stanley Ash 30 oz Tumbler');
 
-    let currentColor = "ash";
+    $('#product-image').attr('src', './images/ash.jpg')
+                       .attr('alt', `Stanley ${currentColorName} 30 oz Tumbler`);
+
     const selectColorParagraphText = document.getElementById('color-selector-header');
     const strong = selectColorParagraphText.querySelector('strong');
+
+    strong.innerHTML = currentColorName;
     
     // Handle color selection hover event
     $('.color-option div').hover(function() {
-        let hoveredColor = $(this).data('color');
-        let descriptionFile = './descriptions/' + hoveredColor + '.html';
-
-        $.get(descriptionFile, function(data) {
-            const description = $(data)[0];
-            strong.innerHTML = description.querySelector('strong').innerHTML;
-        });
-
+        strong.innerHTML = $(this).data('color');
     }, function() {
-        strong.innerHTML = "";
+        strong.innerHTML = currentColorName;
     })
 
     // Handle color change event
     $('.color-option div').click(function() {
-        let selectedColor = $(this).data('color');
+        let className = $(this).attr('class');
+        let selectedColorName = $(this).data('color');
 
-        if (selectedColor === currentColor) {
+        if (selectedColorName === currentColorName) {
             return
         }
         else {
-            currentColor = selectedColor;
+            currentColorName = selectedColorName;
         }
 
-        let imageFile = './images/' + selectedColor + '.jpg'
-        let descriptionFile = './descriptions/' + selectedColor + '.html';
-
-        $('#product-image').attr('src', imageFile);
-        $('#product-image').attr('alt', `Stanley ${selectedColor} 30 oz Tumbler`);
-        $('#product-description').load(descriptionFile);
+        $('#product-image').attr('src', `./images/${className}.jpg`);
+        $('#product-image').attr('alt', `Stanley ${currentColorName} 30 oz Tumbler`);
+        $('#product-description').load(`./descriptions/${className}.html`);
     });
 })
