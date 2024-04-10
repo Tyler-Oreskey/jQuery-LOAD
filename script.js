@@ -1,38 +1,69 @@
 $(document).ready(function() {
-    let currentColorName = "Ash";
+    // Set default color
+    $('.ash').attr('data-selected', 'true');
+    let activeColor = $('[data-selected="true"]');
+    let activeColorName = activeColor.data('color');
 
-    // load default description and image
-    $('#product-description').load('./descriptions/ash.html');
+    // Set default description and image
+    updateProductDescriptionAndImage('ash', activeColorName);
 
-    $('#product-image').attr('src', './images/ash.jpg')
-                       .attr('alt', `Stanley ${currentColorName} 30 oz Tumbler`);
+    // Set initial strong element text
+    updateColorSelectionHeader(activeColorName);
 
-    const selectColorParagraphText = document.getElementById('color-selector-header');
-    const strong = selectColorParagraphText.querySelector('strong');
-
-    strong.innerHTML = currentColorName;
-    
     // Handle color selection hover event
-    $('.color-option div').hover(function() {
-        strong.innerHTML = $(this).data('color');
-    }, function() {
-        strong.innerHTML = currentColorName;
-    })
+    handleColorHoverEvent();
 
     // Handle color change event
+    handleColorChangeEvent(activeColor);
+});
+
+function updateProductImage(className, activeColorName) {
+    $('#product-image').attr({
+        'src': `./images/${className}.jpg`,
+        'alt': `Stanley ${activeColorName} 30 oz Tumbler`
+    });
+}
+
+function updateProductDescription(className) {
+    $('#product-description').load(`./descriptions/${className}.html`);
+}
+
+function updateProductDescriptionAndImage(className, activeColorName) {
+    updateProductDescription(className);
+    updateProductImage(className, activeColorName);
+}
+
+function updateColorSelectionHeader(text) {
+    const strong = $('#color-selector-header strong');
+    strong.text(text);
+}
+
+function handleColorHoverEvent() {
+    $('.color-option div').hover(function() {
+        let color = $(this).data('color');
+        updateColorSelectionHeader(color);
+    },
+    function() {
+        let activeColor = $('[data-selected="true"]').data('color');
+        updateColorSelectionHeader(activeColor);
+    });
+}
+
+function handleColorChangeEvent(activeColor) {
     $('.color-option div').click(function() {
         let className = $(this).attr('class');
         let selectedColorName = $(this).data('color');
 
-        if (selectedColorName === currentColorName) {
-            return
+        if ($(this).is(activeColor)) {
+            return;
         }
         else {
-            currentColorName = selectedColorName;
+            activeColor.removeAttr('data-selected');
+            activeColor = $(this);
+            activeColorName = activeColor.data('color');
+            $(this).attr('data-selected', 'true');
+            updateColorSelectionHeader(selectedColorName);
+            updateProductDescriptionAndImage(className, activeColorName);
         }
-
-        $('#product-image').attr('src', `./images/${className}.jpg`);
-        $('#product-image').attr('alt', `Stanley ${currentColorName} 30 oz Tumbler`);
-        $('#product-description').load(`./descriptions/${className}.html`);
     });
-})
+}

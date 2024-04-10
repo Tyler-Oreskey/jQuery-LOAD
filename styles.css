@@ -43,6 +43,10 @@ h1 {
   border: 2px solid black;
 }
 
+[data-selected="true"] {
+  border: 2px solid black !important;
+}
+
 .neon-green { background-color: #FF5733; }
 .neon-orange { background-color: #FF5733; }
 .fuchsia { background-color: fuchsia; }
