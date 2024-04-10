@@ -83,7 +83,7 @@ $(document).ready(function() {
     updateProductDescriptionAndImage(activeColor)
 
     // Set initial strong element text
-    updateColorSelectionHeader(activeColor.displayName);
+    updateColorSelectionHeader(activeColor);
 
     // Handle color selection hover event
     handleColorHoverEvent(colors);
