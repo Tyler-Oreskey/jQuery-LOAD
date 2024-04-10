@@ -1,13 +1,15 @@
 class Color {
-    constructor(displayName, className) {
+    constructor({ displayName, className, src }) {
         this._displayName = displayName;
         this._className = className;
         this._selected = false;
+        this._src = src;
     }
 
     get className() { return this._className; }
     get displayName() { return this._displayName; }
     get selected() { return this._selected; }
+    get src() { return this._src; }
 
     set selected(val) {
         if (!(typeof val === 'boolean')) {
@@ -48,7 +50,6 @@ class Selection {
             return html + color.getHTML();
         }, '');
     }
-    
 
     getColorByName(displayName) {
         return this.colors.find((color) => color.displayName === displayName);
@@ -60,13 +61,13 @@ class Selection {
 
     getColorData(activeIndex) {
         const colors = [
-            {displayName: 'Ash', className: 'ash'},
-            {displayName: 'Azure', className: 'azure'},
-            {displayName: 'Frost', className: 'frost'},
-            {displayName: 'Fuchsia', className: 'fuchsia'},
-            {displayName: 'Neon Green', className: 'neon-green'},
-            {displayName: 'Neon Orange', className: 'neon-orange'}
-        ].map((color) => new Color(color.displayName, color.className));
+            {displayName: 'Ash', className: 'ash', src: 'https://scheels.scene7.com/is/image/Scheels/04160439423?wid=1000&hei=1000'},
+            {displayName: 'Azure', className: 'azure', src: 'https://scheels.scene7.com/is/image/Scheels/04160439437?wid=1000&hei=1000'},
+            {displayName: 'Frost', className: 'frost', src: 'https://scheels.scene7.com/is/image/Scheels/04160439422?wid=1000&hei=1000'},
+            {displayName: 'Fuchsia', className: 'fuchsia', src: 'https://scheels.scene7.com/is/image/Scheels/04160439433?wid=1000&hei=1000'},
+            {displayName: 'Neon Green', className: 'neon-green', src: 'https://scheels.scene7.com/is/image/Scheels/04160441862?wid=1000&hei=1000'},
+            {displayName: 'Neon Orange', className: 'neon-orange', src: 'https://scheels.scene7.com/is/image/Scheels/04160441864?wid=1000&hei=1000'}
+        ].map((color) => new Color(color));
         colors[activeIndex].selected = true;
         return colors;
     }
@@ -92,11 +93,13 @@ $(document).ready(function() {
     handleColorChangeEvent(colors);
 });
 
-function updateProductImage(className, displayName) {
+function updateProductImage(color) {
     $('#product-image').attr({
-        'src': `./images/${className}.jpg`,
-        'alt': `Stanley ${displayName} 30 oz Tumbler`
+        'src': color.src,
+        'alt': `Stanley ${color.displayName} 30 oz Tumbler`
     });
+
+    $('a').attr('href', color.src);
 }
 
 function updateProductDescription(className) {
@@ -105,7 +108,7 @@ function updateProductDescription(className) {
 
 function updateProductDescriptionAndImage(color) {
     updateProductDescription(color.className);
-    updateProductImage(color.className, color.displayName);
+    updateProductImage(color);
 }
 
 function updateColorSelectionHeader(color) {
